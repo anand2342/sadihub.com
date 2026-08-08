@@ -191,12 +191,12 @@ export const FamilyAdminPanel: React.FC<FamilyAdminPanelProps> = ({
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Header Banner */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-6">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-6">
         <div>
           <span className="inline-block text-xs font-bold tracking-widest uppercase text-amber-600 dark:text-amber-400 px-3.5 py-1 rounded-full border border-amber-500/30 bg-amber-500/10 whitespace-nowrap">
             Family Control Center
           </span>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[var(--text-primary)] mt-2">
+          <h2 className="text-2xl sm:text-4xl font-serif font-bold text-[var(--text-primary)] mt-2 whitespace-nowrap">
             Family Admin Panel
           </h2>
           <p className="text-xs text-[var(--text-secondary)] mt-1">
@@ -205,18 +205,18 @@ export const FamilyAdminPanel: React.FC<FamilyAdminPanelProps> = ({
         </div>
 
         {/* Quick Analytics Summary */}
-        <div className="grid grid-cols-3 gap-2 w-full sm:w-auto text-center font-sans">
-          <div className="px-3 sm:px-4 py-2.5 rounded-xl bg-[var(--bg-accent)] border border-[var(--border-gold)] min-w-[75px] shrink-0">
-            <span className="text-base font-bold text-[var(--gold-dark)] block leading-none">{approvedMembers.length}</span>
-            <span className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)] mt-1 whitespace-nowrap">Members</span>
+        <div className="flex items-center gap-3 font-sans w-full md:w-auto shrink-0 pt-2 md:pt-0">
+          <div className="flex-1 md:flex-none px-4 py-2.5 rounded-xl bg-[var(--bg-accent)] border border-[var(--border-gold)] text-center min-w-[85px] shadow-sm">
+            <span className="text-base sm:text-lg font-bold text-[var(--gold-dark)] dark:text-[var(--gold-primary)] block leading-none">{approvedMembers.length}</span>
+            <span className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)] mt-1.5 whitespace-nowrap">Members</span>
           </div>
-          <div className="px-3 sm:px-4 py-2.5 rounded-xl bg-[var(--bg-accent)] border border-[var(--border-gold)] min-w-[75px] shrink-0">
-            <span className="text-base font-bold text-[var(--gold-dark)] block leading-none">{photos.length}</span>
-            <span className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)] mt-1 whitespace-nowrap">Photos</span>
+          <div className="flex-1 md:flex-none px-4 py-2.5 rounded-xl bg-[var(--bg-accent)] border border-[var(--border-gold)] text-center min-w-[85px] shadow-sm">
+            <span className="text-base sm:text-lg font-bold text-[var(--gold-dark)] dark:text-[var(--gold-primary)] block leading-none">{photos.length}</span>
+            <span className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)] mt-1.5 whitespace-nowrap">Photos</span>
           </div>
-          <div className="px-3 sm:px-4 py-2.5 rounded-xl bg-[var(--bg-accent)] border border-[var(--border-gold)] min-w-[75px] shrink-0">
-            <span className="text-base font-bold text-[var(--gold-dark)] block leading-none">{wishes.length}</span>
-            <span className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)] mt-1 whitespace-nowrap">Wishes</span>
+          <div className="flex-1 md:flex-none px-4 py-2.5 rounded-xl bg-[var(--bg-accent)] border border-[var(--border-gold)] text-center min-w-[85px] shadow-sm">
+            <span className="text-base sm:text-lg font-bold text-[var(--gold-dark)] dark:text-[var(--gold-primary)] block leading-none">{wishes.length}</span>
+            <span className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)] mt-1.5 whitespace-nowrap">Wishes</span>
           </div>
         </div>
       </div>
