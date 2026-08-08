@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+
+:root {
+  /* Luxury Ivory & Gold Light Mode Palette */
+  --bg-primary: oklch(0.985 0.008 85);
+  --bg-surface: oklch(1.0 0.005 85);
+  --bg-card: oklch(0.99 0.006 85);
+  --bg-accent: oklch(0.96 0.02 85);
+  
+  --text-primary: oklch(0.20 0.03 50);
+  --text-secondary: oklch(0.42 0.03 50);
+  --text-muted: oklch(0.60 0.02 50);
+  
+  --gold-primary: #D4AF37;
+  --gold-secondary: #C5A059;
+  --gold-dark: #996515;
+  --gold-light: #F7E7CE;
+  --gold-glow: rgba(212, 175, 55, 0.25);
+  
+  --border-gold: rgba(212, 175, 55, 0.35);
+  --border-subtle: oklch(0.92 0.01 85);
+
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.dark {
+  /* Deep Royal Charcoal & Warm Gold Dark Mode Palette */
+  --bg-primary: oklch(0.14 0.015 50);
+  --bg-surface: oklch(0.18 0.018 50);
+  --bg-card: oklch(0.20 0.02 50);
+  --bg-accent: oklch(0.25 0.025 50);
+  
+  --text-primary: oklch(0.96 0.01 85);
+  --text-secondary: oklch(0.80 0.02 85);
+  --text-muted: oklch(0.62 0.02 85);
+  
+  --gold-primary: #E5C158;
+  --gold-secondary: #D4AF37;
+  --gold-dark: #B8860B;
+  --gold-light: #3D3215;
+  --gold-glow: rgba(229, 193, 88, 0.3);
+  
+  --border-gold: rgba(229, 193, 88, 0.4);
+  --border-subtle: oklch(0.26 0.02 50);
+}
+
+.royal-wedding {
+  /* Grand Shahi Shaadi Crimson Maroon & Rich Metallic Gold Palette */
+  --bg-primary: #330308;
+  --bg-surface: #45060E;
+  --bg-card: #520912;
+  --bg-accent: #680E18;
+  
+  --text-primary: #FFF5E1;
+  --text-secondary: #F5E3BD;
+  --text-muted: #E5C158;
+  
+  --gold-primary: #FFDF00;
+  --gold-secondary: #D4AF37;
+  --gold-dark: #F7D070;
+  --gold-light: #7A121E;
+  --gold-glow: rgba(255, 223, 0, 0.45);
+  
+  --border-gold: rgba(255, 215, 0, 0.6);
+  --border-subtle: rgba(212, 175, 55, 0.3);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, .font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Luxury Gold Gradients & Text Utilities */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #DFBA49 0%, #B8860B 50%, #E5C158 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #D4AF37 0%, #C5A059 50%, #A37F2C 100%);
+  color: #FFFFFF;
+}
+
+.bg-gold-gradient:hover {
+  background: linear-gradient(135deg, #E5C158 0%, #D4AF37 50%, #B8860B 100%);
+}
+
+.gold-border {
+  border: 1px solid var(--border-gold);
+}
+
+.gold-shadow {
+  box-shadow: 0 10px 30px -10px var(--gold-glow);
+}
+
+/* Smooth Card Hover Lift */
+.card-hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -12px var(--gold-glow);
+}
+
+/* Glassmorphism Effect */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-gold);
+}
+
+.dark .glass-panel {
+  background: rgba(24, 22, 20, 0.85);
+  border: 1px solid var(--border-gold);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
+
+/* ============================================================================
+   PRINT STYLESHEET - DIGITAL INVITATION CARD PRINT OPTIMIZATION
+   ============================================================================ */
+@media print {
+  /* 1. Hide all website UI chrome */
+  header,
+  aside,
+  footer,
+  .print\:hidden,
+  button,
+  .toast-container,
+  nav {
+    display: none !important;
+  }
+
+  /* 2. Page layout configuration for 1 Page A4 fit */
+  @page {
+    size: A4 portrait;
+    margin: 4mm;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .min-h-screen, main {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    background: transparent !important;
+  }
+
+  /* 3. Fix text gradient becoming transparent on paper */
+  .text-gold-gradient {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: #8b5a2b !important;
+    color: #8b5a2b !important;
+    font-weight: 700 !important;
+  }
+
+  /* 4. Force printable invitation card to fit 100% on 1 single A4 sheet */
+  .printable-invitation-card {
+    background: #fffdf8 !important;
+    border: 3px solid #b8860b !important;
+    box-shadow: none !important;
+    color: #1a1a1a !important;
+    padding: 1rem 1.25rem !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-height: 272mm !important;
+    box-sizing: border-box !important;
+    page-break-inside: avoid !important;
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .printable-invitation-card h1 {
+    color: #8b5a2b !important;
+    -webkit-text-fill-color: #8b5a2b !important;
+  }
+
+  .printable-invitation-card h3,
+  .printable-invitation-card p {
+    color: #222222 !important;
+  }
+
+  /* Force background blend and soft vignette cutout on printed photos */
+  .portrait-vignette-blend {
+    mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 52%, rgba(0,0,0,0) 96%) !important;
+    -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 52%, rgba(0,0,0,0) 96%) !important;
+    mix-blend-mode: multiply !important;
+  }
+}
+
+/* Royal Portrait Vignette / Background Blend Effect (Screen + Print) */
+.portrait-vignette-blend {
+  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 98%);
+  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 98%);
+}
