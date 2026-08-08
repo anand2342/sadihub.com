@@ -1,4 +1,4 @@
-// Java 21 Spring Boot Backend REST API Client for Sadi Hub
+// Java 21 Spring Boot Backend REST API Client for Shadi Hub
 
 const JAVA_API_BASE_URL = 'http://localhost:8080/api/v1';
 

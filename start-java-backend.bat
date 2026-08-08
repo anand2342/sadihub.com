@@ -1,7 +1,7 @@
 @echo off
-title Sadi Hub Java 21 Spring Boot Backend
+title Shadi Hub Java 21 Spring Boot Backend
 echo ==================================================================
-echo   👑 Starting Sadi Hub Java 21 Spring Boot Backend Server... 👑
+echo   👑 Starting Shadi Hub Java 21 Spring Boot Backend Server... 👑
 echo ==================================================================
 cd /d "%~dp0backend"
 

@@ -15,7 +15,7 @@ public class HomeController {
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Sadi Hub Java 21 Spring Boot Backend</title>
+                <title>Shadi Hub Java 21 Spring Boot Backend</title>
                 <style>
                     body {
                         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -65,7 +65,7 @@ public class HomeController {
             <body>
                 <div class="card">
                     <div class="badge">॥ श्री गणेशाय नमः ॥</div>
-                    <h1>👑 Sadi Hub Backend Active 👑</h1>
+                    <h1>👑 Shadi Hub Backend Active 👑</h1>
                     <p>Java 21 Spring Boot 3.x REST API Engine is running live on <strong>port 8080</strong>.</p>
                     <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin: 15px 0; text-align: left; font-size: 14px;">
                         <p style="margin: 4px 0; color: #ffd700;"><strong>🔑 H2 Console Login Credentials:</strong></p>

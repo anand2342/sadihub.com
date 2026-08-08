@@ -1,7 +1,7 @@
 @echo off
-title Sadi Hub Frontend Web Portal
+title Shadi Hub Frontend Web Portal
 echo ==================================================================
-echo   👑 Starting Sadi Hub Frontend Web Portal Dev Server... 👑
+echo   👑 Starting Shadi Hub Frontend Web Portal Dev Server... 👑
 echo ==================================================================
 cd /d "%~dp0frontend"
 

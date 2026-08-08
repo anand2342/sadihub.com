@@ -1,6 +1,6 @@
-# 👑 Sadi Hub (sadihub.com) - Enterprise Full-Stack Monorepo
+# 👑 Shadi Hub (sadihub.com) - Enterprise Full-Stack Monorepo
 
-Welcome to **Sadi Hub (`sadihub.com`)**, a modern, high-performance wedding portal built using a decoupled **Java 21 Spring Boot 3.x REST API Backend** and a **React 19 + Vite + Tailwind CSS Frontend**.
+Welcome to **Shadi Hub (`sadihub.com`)**, a modern, high-performance wedding portal built using a decoupled **Java 21 Spring Boot 3.x REST API Backend** and a **React 19 + Vite + Tailwind CSS Frontend**.
 
 ---
 
@@ -53,4 +53,4 @@ start-frontend.bat
 ## 🛠️ Technology Stack
 - **Backend API**: Java 21 LTS + Spring Boot 3.2.3 + Spring Security + JWT + JPA Hibernate + H2 Database
 - **Web Frontend**: React 19 + TypeScript + Vite v8 + Tailwind CSS v4 + Lucide Icons
-- **Mobile Target**: React Native Expo JavaScript (`sadi hub.com`)
+- **Mobile Target**: React Native Expo JavaScript (`shadi hub.com`)

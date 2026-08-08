@@ -9,7 +9,7 @@ public class SadiHubApplication {
     public static void main(String[] args) {
         SpringApplication.run(SadiHubApplication.class, args);
         System.out.println("==================================================================");
-        System.out.println(" 👑 Sadi Hub Java 21 Spring Boot Backend Running on port 8080 👑 ");
+        System.out.println(" 👑 Shadi Hub Java 21 Spring Boot Backend Running on port 8080 👑 ");
         System.out.println("==================================================================");
     }
 }
