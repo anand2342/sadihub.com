@@ -11,5 +11,4 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<UserEntity, String> {
     Optional<UserEntity> findByEmail(String email);
     List<UserEntity> findByFamilyId(String familyId);
-    long countByFamilyIdAndUserId(String familyId, String userId); // used for photo checks
 }
