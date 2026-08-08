@@ -67,6 +67,11 @@ public class HomeController {
                     <div class="badge">॥ श्री गणेशाय नमः ॥</div>
                     <h1>👑 Sadi Hub Backend Active 👑</h1>
                     <p>Java 21 Spring Boot 3.x REST API Engine is running live on <strong>port 8080</strong>.</p>
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin: 15px 0; text-align: left; font-size: 14px;">
+                        <p style="margin: 4px 0; color: #ffd700;"><strong>🔑 H2 Console Login Credentials:</strong></p>
+                        <p style="margin: 4px 0;"><strong>JDBC URL:</strong> <code>jdbc:h2:file:./data/sadihubdb</code></p>
+                        <p style="margin: 4px 0;"><strong>User Name:</strong> <code>sa</code> | <strong>Password:</strong> (leave empty)</p>
+                    </div>
                     <div class="links">
                         <a href="http://localhost:5173" target="_blank">Open Frontend Web Portal (Port 5173)</a>
                         <a href="/h2-console" target="_blank">Open H2 DB Console</a>
