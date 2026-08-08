@@ -82,21 +82,21 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({ wedding, events, onN
       </div>
 
       {/* GROOM FIRST COUPLE HIGHLIGHT CARDS */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         {/* GROOM CARD FIRST */}
-        <LuxuryCard className="flex items-center gap-4 sm:gap-5">
+        <LuxuryCard className="flex flex-row items-center gap-3.5 sm:gap-5 p-4 sm:p-5 overflow-hidden">
           <img
             src={wedding?.groom_image || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80'}
             alt="Groom"
-            className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover border-2 border-[var(--border-gold)] shrink-0 shadow-md"
+            className="w-20 h-20 sm:w-28 sm:h-28 rounded-2xl object-cover border-2 border-[var(--border-gold)] shrink-0 shadow-md"
           />
-          <div className="space-y-1.5 flex-1 min-w-0">
+          <div className="space-y-1 sm:space-y-1.5 min-w-0 flex-1">
             <div>
               <span className="inline-block whitespace-nowrap text-[10px] font-bold tracking-widest uppercase text-[var(--gold-dark)] dark:text-[var(--gold-primary)] px-2.5 py-0.5 rounded-full border border-[var(--border-gold)] bg-[var(--bg-accent)]">
                 The Groom
               </span>
             </div>
-            <h3 className="text-xl font-serif font-bold text-[var(--text-primary)] truncate">
+            <h3 className="text-base sm:text-xl font-serif font-bold text-[var(--text-primary)] leading-snug">
               {wedding?.groom_name}
             </h3>
             <p className="text-xs text-[var(--text-secondary)] line-clamp-2">
@@ -112,19 +112,19 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({ wedding, events, onN
         </LuxuryCard>
 
         {/* BRIDE CARD SECOND */}
-        <LuxuryCard className="flex items-center gap-4 sm:gap-5">
+        <LuxuryCard className="flex flex-row items-center gap-3.5 sm:gap-5 p-4 sm:p-5 overflow-hidden">
           <img
             src={wedding?.bride_image || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'}
             alt="Bride"
-            className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover border-2 border-[var(--border-gold)] shrink-0 shadow-md"
+            className="w-20 h-20 sm:w-28 sm:h-28 rounded-2xl object-cover border-2 border-[var(--border-gold)] shrink-0 shadow-md"
           />
-          <div className="space-y-1.5 flex-1 min-w-0">
+          <div className="space-y-1 sm:space-y-1.5 min-w-0 flex-1">
             <div>
               <span className="inline-block whitespace-nowrap text-[10px] font-bold tracking-widest uppercase text-[var(--gold-dark)] dark:text-[var(--gold-primary)] px-2.5 py-0.5 rounded-full border border-[var(--border-gold)] bg-[var(--bg-accent)]">
                 The Bride
               </span>
             </div>
-            <h3 className="text-xl font-serif font-bold text-[var(--text-primary)] truncate">
+            <h3 className="text-base sm:text-xl font-serif font-bold text-[var(--text-primary)] leading-snug">
               {wedding?.bride_name}
             </h3>
             <p className="text-xs text-[var(--text-secondary)] line-clamp-2">
