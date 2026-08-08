@@ -43,7 +43,7 @@ const MainAppContent: React.FC = () => {
   const [isOpenMobileSidebar, setIsOpenMobileSidebar] = useState(() => typeof window !== 'undefined' && window.innerWidth >= 768);
 
   // Modal states
-  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(true);
   const [authInitialTab, setAuthInitialTab] = useState<'signin' | 'join' | 'create'>('signin');
   const [showBootstrap, setShowBootstrap] = useState(false);
 
