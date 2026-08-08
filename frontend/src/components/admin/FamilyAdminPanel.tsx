@@ -193,10 +193,10 @@ export const FamilyAdminPanel: React.FC<FamilyAdminPanelProps> = ({
       {/* Header Banner */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[var(--border-subtle)] pb-6">
         <div>
-          <span className="text-xs font-bold tracking-widest uppercase text-amber-600 dark:text-amber-400 px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/10">
+          <span className="inline-block text-xs font-bold tracking-widest uppercase text-amber-600 dark:text-amber-400 px-3.5 py-1 rounded-full border border-amber-500/30 bg-amber-500/10 whitespace-nowrap">
             Family Control Center
           </span>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[var(--text-primary)] mt-1">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[var(--text-primary)] mt-2">
             Family Admin Panel
           </h2>
           <p className="text-xs text-[var(--text-secondary)] mt-1">
@@ -206,59 +206,59 @@ export const FamilyAdminPanel: React.FC<FamilyAdminPanelProps> = ({
 
         {/* Quick Analytics Summary */}
         <div className="grid grid-cols-3 gap-2 w-full sm:w-auto text-center font-sans">
-          <div className="px-4 py-2 rounded-xl bg-[var(--bg-accent)] border border-[var(--border-gold)]">
-            <span className="text-base font-bold text-[var(--gold-dark)]">{approvedMembers.length}</span>
-            <span className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)]">Members</span>
+          <div className="px-3 sm:px-4 py-2.5 rounded-xl bg-[var(--bg-accent)] border border-[var(--border-gold)] min-w-[75px] shrink-0">
+            <span className="text-base font-bold text-[var(--gold-dark)] block leading-none">{approvedMembers.length}</span>
+            <span className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)] mt-1 whitespace-nowrap">Members</span>
           </div>
-          <div className="px-4 py-2 rounded-xl bg-[var(--bg-accent)] border border-[var(--border-gold)]">
-            <span className="text-base font-bold text-[var(--gold-dark)]">{photos.length}</span>
-            <span className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)]">Photos</span>
+          <div className="px-3 sm:px-4 py-2.5 rounded-xl bg-[var(--bg-accent)] border border-[var(--border-gold)] min-w-[75px] shrink-0">
+            <span className="text-base font-bold text-[var(--gold-dark)] block leading-none">{photos.length}</span>
+            <span className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)] mt-1 whitespace-nowrap">Photos</span>
           </div>
-          <div className="px-4 py-2 rounded-xl bg-[var(--bg-accent)] border border-[var(--border-gold)]">
-            <span className="text-base font-bold text-[var(--gold-dark)]">{wishes.length}</span>
-            <span className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)]">Wishes</span>
+          <div className="px-3 sm:px-4 py-2.5 rounded-xl bg-[var(--bg-accent)] border border-[var(--border-gold)] min-w-[75px] shrink-0">
+            <span className="text-base font-bold text-[var(--gold-dark)] block leading-none">{wishes.length}</span>
+            <span className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)] mt-1 whitespace-nowrap">Wishes</span>
           </div>
         </div>
       </div>
 
       {/* UNIQUE FAMILY CODE DISPLAY & SHARE BANNER */}
-      <LuxuryCard className="border-2 border-[var(--border-gold)] gold-shadow bg-gradient-to-r from-[var(--gold-light)]/40 via-[var(--bg-accent)] to-[var(--gold-light)]/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[var(--gold-dark)] dark:text-[var(--gold-primary)]">
-            <Sparkles className="w-4 h-4" />
+      <LuxuryCard className="border-2 border-[var(--border-gold)] gold-shadow bg-gradient-to-r from-[var(--gold-light)]/40 via-[var(--bg-accent)] to-[var(--gold-light)]/40 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 overflow-hidden">
+        <div className="space-y-2 max-w-xl">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[var(--gold-dark)] dark:text-[var(--gold-primary)] whitespace-nowrap">
+            <Sparkles className="w-4 h-4 text-amber-500 shrink-0" />
             <span>Unique Family Member Code</span>
           </div>
-          <p className="text-xs text-[var(--text-secondary)]">
+          <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
             Share this code with your family relatives so they can easily open & join your private wedding portal!
           </p>
           <div className="pt-1">
-            <span className="text-2xl sm:text-3xl font-mono font-bold text-gold-gradient tracking-wider px-4 py-1 rounded-xl bg-[var(--bg-card)] border-2 border-[var(--border-gold)] inline-block gold-shadow">
-              {session?.current_family?.family_code || 'KAP-8492'}
+            <span className="text-2xl sm:text-3xl font-mono font-bold text-[var(--gold-dark)] dark:text-[var(--gold-primary)] tracking-wider px-4 py-1.5 rounded-xl bg-[var(--bg-card)] border-2 border-[var(--border-gold)] inline-block gold-shadow">
+              {session?.current_family?.family_code || 'NAY-4773'}
             </span>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 w-full sm:w-auto shrink-0">
+        <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full md:w-auto shrink-0">
           <button
             onClick={() => {
-              const code = session?.current_family?.family_code || 'KAP-8492';
+              const code = session?.current_family?.family_code || 'NAY-4773';
               navigator.clipboard.writeText(code);
               onToast(`Unique Code "${code}" copied to clipboard!`, 'success');
             }}
-            className="flex-1 sm:flex-none px-5 py-3 rounded-xl bg-gold-gradient text-white font-semibold text-xs shadow hover:opacity-95 transition-all cursor-pointer"
+            className="w-full sm:w-auto px-5 py-3 rounded-xl bg-gold-gradient text-white font-semibold text-xs shadow hover:opacity-95 transition-all cursor-pointer whitespace-nowrap text-center"
           >
             Copy Unique Code
           </button>
 
           <button
             onClick={() => {
-              const code = session?.current_family?.family_code || 'KAP-8492';
-              const name = session?.current_family?.name || 'Kapoor Family';
+              const code = session?.current_family?.family_code || 'NAY-4773';
+              const name = session?.current_family?.name || 'Nayak Family';
               const text = `👑 You're invited to join the ${name} Wedding Portal! Open http://localhost:5173/ and enter Unique Code: ${code} to join our private family space!`;
               navigator.clipboard.writeText(text);
               onToast('Full invitation text with Unique Code copied!', 'info');
             }}
-            className="flex-1 sm:flex-none px-4 py-3 rounded-xl border border-[var(--border-gold)] bg-[var(--bg-card)] text-[var(--text-primary)] font-semibold text-xs hover:bg-[var(--bg-accent)] transition-all cursor-pointer"
+            className="w-full sm:w-auto px-4 py-3 rounded-xl border border-[var(--border-gold)] bg-[var(--bg-card)] text-[var(--text-primary)] font-semibold text-xs hover:bg-[var(--bg-accent)] transition-all cursor-pointer whitespace-nowrap text-center"
           >
             Copy Full Invitation
           </button>
