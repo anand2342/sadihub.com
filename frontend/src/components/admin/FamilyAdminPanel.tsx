@@ -222,7 +222,7 @@ export const FamilyAdminPanel: React.FC<FamilyAdminPanelProps> = ({
       </div>
 
       {/* UNIQUE FAMILY CODE DISPLAY & SHARE BANNER */}
-      <LuxuryCard className="border-2 border-[var(--border-gold)] gold-shadow bg-gradient-to-r from-[var(--gold-light)]/40 via-[var(--bg-accent)] to-[var(--gold-light)]/40 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 overflow-hidden">
+      <LuxuryCard className="border-2 border-[var(--border-gold)] gold-shadow bg-gradient-to-r from-[var(--gold-light)]/40 via-[var(--bg-accent)] to-[var(--gold-light)]/40 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5 p-4 sm:p-6 overflow-hidden">
         <div className="space-y-2 max-w-xl">
           <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[var(--gold-dark)] dark:text-[var(--gold-primary)] whitespace-nowrap">
             <Sparkles className="w-4 h-4 text-amber-500 shrink-0" />
@@ -238,14 +238,14 @@ export const FamilyAdminPanel: React.FC<FamilyAdminPanelProps> = ({
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full md:w-auto shrink-0">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full lg:w-auto shrink-0">
           <button
             onClick={() => {
               const code = session?.current_family?.family_code || 'NAY-4773';
               navigator.clipboard.writeText(code);
               onToast(`Unique Code "${code}" copied to clipboard!`, 'success');
             }}
-            className="w-full sm:w-auto px-5 py-3 rounded-xl bg-gold-gradient text-white font-semibold text-xs shadow hover:opacity-95 transition-all cursor-pointer whitespace-nowrap text-center"
+            className="px-5 py-3 rounded-xl bg-gold-gradient text-white font-semibold text-xs shadow hover:opacity-95 transition-all cursor-pointer whitespace-nowrap text-center shrink-0"
           >
             Copy Unique Code
           </button>
@@ -258,7 +258,7 @@ export const FamilyAdminPanel: React.FC<FamilyAdminPanelProps> = ({
               navigator.clipboard.writeText(text);
               onToast('Full invitation text with Unique Code copied!', 'info');
             }}
-            className="w-full sm:w-auto px-4 py-3 rounded-xl border border-[var(--border-gold)] bg-[var(--bg-card)] text-[var(--text-primary)] font-semibold text-xs hover:bg-[var(--bg-accent)] transition-all cursor-pointer whitespace-nowrap text-center"
+            className="px-4 py-3 rounded-xl border border-[var(--border-gold)] bg-[var(--bg-card)] text-[var(--text-primary)] font-semibold text-xs hover:bg-[var(--bg-accent)] transition-all cursor-pointer whitespace-nowrap text-center shrink-0"
           >
             Copy Full Invitation
           </button>
@@ -267,10 +267,10 @@ export const FamilyAdminPanel: React.FC<FamilyAdminPanelProps> = ({
 
 
       {/* Admin Nav Tabs */}
-      <div className="flex items-center gap-2 border-b border-[var(--border-subtle)] pb-2 overflow-x-auto">
+      <div className="flex items-center gap-2 border-b border-[var(--border-subtle)] pb-2 overflow-x-auto no-scrollbar">
         <button
           onClick={() => setActiveTab('wedding')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
             activeTab === 'wedding'
               ? 'bg-gold-gradient text-white shadow'
               : 'border border-[var(--border-gold)] bg-[var(--bg-card)] text-[var(--text-secondary)]'
@@ -281,7 +281,7 @@ export const FamilyAdminPanel: React.FC<FamilyAdminPanelProps> = ({
 
         <button
           onClick={() => setActiveTab('members')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer relative ${
+          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer relative whitespace-nowrap shrink-0 ${
             activeTab === 'members'
               ? 'bg-gold-gradient text-white shadow'
               : 'border border-[var(--border-gold)] bg-[var(--bg-card)] text-[var(--text-secondary)]'
@@ -297,7 +297,7 @@ export const FamilyAdminPanel: React.FC<FamilyAdminPanelProps> = ({
 
         <button
           onClick={() => setActiveTab('events')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
             activeTab === 'events'
               ? 'bg-gold-gradient text-white shadow'
               : 'border border-[var(--border-gold)] bg-[var(--bg-card)] text-[var(--text-secondary)]'
@@ -308,7 +308,7 @@ export const FamilyAdminPanel: React.FC<FamilyAdminPanelProps> = ({
 
         <button
           onClick={() => setActiveTab('moderation')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
             activeTab === 'moderation'
               ? 'bg-gold-gradient text-white shadow'
               : 'border border-[var(--border-gold)] bg-[var(--bg-card)] text-[var(--text-secondary)]'

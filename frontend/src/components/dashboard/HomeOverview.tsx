@@ -84,17 +84,19 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({ wedding, events, onN
       {/* GROOM FIRST COUPLE HIGHLIGHT CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* GROOM CARD FIRST */}
-        <LuxuryCard className="flex items-center gap-5">
+        <LuxuryCard className="flex items-center gap-4 sm:gap-5">
           <img
             src={wedding?.groom_image || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80'}
             alt="Groom"
             className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover border-2 border-[var(--border-gold)] shrink-0 shadow-md"
           />
-          <div className="space-y-1">
-            <span className="text-[10px] font-bold tracking-widest uppercase text-[var(--gold-dark)] dark:text-[var(--gold-primary)] px-2.5 py-0.5 rounded-full border border-[var(--border-gold)] bg-[var(--bg-accent)]">
-              The Groom
-            </span>
-            <h3 className="text-xl font-serif font-bold text-[var(--text-primary)]">
+          <div className="space-y-1.5 flex-1 min-w-0">
+            <div>
+              <span className="inline-block whitespace-nowrap text-[10px] font-bold tracking-widest uppercase text-[var(--gold-dark)] dark:text-[var(--gold-primary)] px-2.5 py-0.5 rounded-full border border-[var(--border-gold)] bg-[var(--bg-accent)]">
+                The Groom
+              </span>
+            </div>
+            <h3 className="text-xl font-serif font-bold text-[var(--text-primary)] truncate">
               {wedding?.groom_name}
             </h3>
             <p className="text-xs text-[var(--text-secondary)] line-clamp-2">
@@ -102,25 +104,27 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({ wedding, events, onN
             </p>
             <button
               onClick={() => onNavigate('couple')}
-              className="text-xs font-semibold text-[var(--gold-dark)] dark:text-[var(--gold-primary)] hover:underline inline-flex items-center gap-1 pt-1 cursor-pointer"
+              className="text-xs font-semibold text-[var(--gold-dark)] dark:text-[var(--gold-primary)] hover:underline inline-flex items-center gap-1 pt-0.5 cursor-pointer whitespace-nowrap"
             >
-              View Groom Details <ArrowRight className="w-3 h-3" />
+              View Groom Details <ArrowRight className="w-3 h-3 shrink-0" />
             </button>
           </div>
         </LuxuryCard>
 
         {/* BRIDE CARD SECOND */}
-        <LuxuryCard className="flex items-center gap-5">
+        <LuxuryCard className="flex items-center gap-4 sm:gap-5">
           <img
             src={wedding?.bride_image || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'}
             alt="Bride"
             className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover border-2 border-[var(--border-gold)] shrink-0 shadow-md"
           />
-          <div className="space-y-1">
-            <span className="text-[10px] font-bold tracking-widest uppercase text-[var(--gold-dark)] dark:text-[var(--gold-primary)] px-2.5 py-0.5 rounded-full border border-[var(--border-gold)] bg-[var(--bg-accent)]">
-              The Bride
-            </span>
-            <h3 className="text-xl font-serif font-bold text-[var(--text-primary)]">
+          <div className="space-y-1.5 flex-1 min-w-0">
+            <div>
+              <span className="inline-block whitespace-nowrap text-[10px] font-bold tracking-widest uppercase text-[var(--gold-dark)] dark:text-[var(--gold-primary)] px-2.5 py-0.5 rounded-full border border-[var(--border-gold)] bg-[var(--bg-accent)]">
+                The Bride
+              </span>
+            </div>
+            <h3 className="text-xl font-serif font-bold text-[var(--text-primary)] truncate">
               {wedding?.bride_name}
             </h3>
             <p className="text-xs text-[var(--text-secondary)] line-clamp-2">
@@ -128,9 +132,9 @@ export const HomeOverview: React.FC<HomeOverviewProps> = ({ wedding, events, onN
             </p>
             <button
               onClick={() => onNavigate('couple')}
-              className="text-xs font-semibold text-[var(--gold-dark)] dark:text-[var(--gold-primary)] hover:underline inline-flex items-center gap-1 pt-1 cursor-pointer"
+              className="text-xs font-semibold text-[var(--gold-dark)] dark:text-[var(--gold-primary)] hover:underline inline-flex items-center gap-1 pt-0.5 cursor-pointer whitespace-nowrap"
             >
-              View Bride Details <ArrowRight className="w-3 h-3" />
+              View Bride Details <ArrowRight className="w-3 h-3 shrink-0" />
             </button>
           </div>
         </LuxuryCard>
