@@ -3,13 +3,19 @@ package com.sadihub.controller;
 import com.sadihub.entity.WeddingEntity;
 import com.sadihub.repository.WeddingRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/wedding")
+@SuppressWarnings("null")
 public class WeddingController {
 
     private final WeddingRepository weddingRepository;
@@ -19,7 +25,7 @@ public class WeddingController {
     }
 
     @GetMapping("/{familyId}")
-    public ResponseEntity<?> getWedding(@PathVariable String familyId) {
+    public ResponseEntity<WeddingEntity> getWedding(@PathVariable String familyId) {
         Optional<WeddingEntity> wedding = weddingRepository.findByFamilyId(familyId);
         if (wedding.isPresent()) {
             return ResponseEntity.ok(wedding.get());
@@ -42,12 +48,12 @@ public class WeddingController {
     }
 
     @PostMapping("/{familyId}")
-    public ResponseEntity<?> updateWedding(@PathVariable String familyId, @RequestBody WeddingEntity updates) {
+    public ResponseEntity<WeddingEntity> updateWedding(@PathVariable String familyId, @RequestBody WeddingEntity updates) {
         Optional<WeddingEntity> existingOpt = weddingRepository.findByFamilyId(familyId);
-        WeddingEntity wedding = existingOpt.orElse(new WeddingEntity());
+        WeddingEntity wedding = existingOpt.orElseGet(WeddingEntity::new);
 
         if (wedding.getId() == null) {
-            wedding.setId("wedding-" + UUID.randomUUID().toString());
+            wedding.setId("wedding-" + UUID.randomUUID());
             wedding.setFamilyId(familyId);
         }
 

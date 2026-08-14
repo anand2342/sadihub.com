@@ -30,7 +30,7 @@ const MainAppContent = () => {
     const [activeTab, setActiveTab] = useState('home');
     const [isOpenMobileSidebar, setIsOpenMobileSidebar] = useState(() => typeof window !== 'undefined' && window.innerWidth >= 768);
     // Modal states
-    const [showAuthModal, setShowAuthModal] = useState(true);
+    const [showAuthModal, setShowAuthModal] = useState(false);
     const [authInitialTab, setAuthInitialTab] = useState('signin');
     const [showBootstrap, setShowBootstrap] = useState(false);
     // Toast

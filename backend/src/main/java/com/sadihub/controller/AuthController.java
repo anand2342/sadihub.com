@@ -3,34 +3,37 @@ package com.sadihub.controller;
 import com.sadihub.config.JwtUtils;
 import com.sadihub.entity.FamilyEntity;
 import com.sadihub.entity.UserEntity;
-import com.sadihub.entity.WeddingEntity;
 import com.sadihub.repository.FamilyRepository;
 import com.sadihub.repository.UserRepository;
-import com.sadihub.repository.WeddingRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@SuppressWarnings("null")
 public class AuthController {
 
     private final UserRepository userRepository;
     private final FamilyRepository familyRepository;
-    private final WeddingRepository weddingRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
 
     public AuthController(UserRepository userRepository,
                           FamilyRepository familyRepository,
-                          WeddingRepository weddingRepository,
                           PasswordEncoder passwordEncoder,
                           JwtUtils jwtUtils) {
         this.userRepository = userRepository;
         this.familyRepository = familyRepository;
-        this.weddingRepository = weddingRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtils = jwtUtils;
     }
@@ -55,7 +58,7 @@ public class AuthController {
         }
 
         Optional<FamilyEntity> familyOpt = familyRepository.findById(user.getFamilyId());
-        FamilyEntity family = familyOpt.orElse(new FamilyEntity(user.getFamilyId(), "Family Wedding", "family", "WEDDING123"));
+        FamilyEntity family = familyOpt.orElseGet(() -> new FamilyEntity(user.getFamilyId(), "Family Wedding", "family", "WEDDING123"));
 
         String token = jwtUtils.generateToken(user.getId(), user.getEmail(), user.getFamilyId(), user.getRole());
 
@@ -63,7 +66,7 @@ public class AuthController {
         response.put("token", token);
         response.put("user_id", user.getId());
         response.put("email", user.getEmail());
-        response.put("roles", List.of(user.getRole()));
+        response.put("roles", user.getRole() != null ? Collections.singletonList(user.getRole()) : Collections.emptyList());
         response.put("profile", user);
         response.put("current_family", family);
 
@@ -94,7 +97,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body(Map.of("message", "An account with this email already exists!"));
         }
 
-        String userId = "user-" + UUID.randomUUID().toString();
+        String userId = "user-" + UUID.randomUUID();
         UserEntity user = new UserEntity();
         user.setId(userId);
         user.setFamilyId(family.getId());
@@ -105,7 +108,7 @@ public class AuthController {
         user.setMobileNumber(mobileNumber);
         user.setStatus("pending"); // Strictly PENDING until Family Admin approves
         user.setRole("family_member");
-        user.setAvatarUrl("https://api.dicebear.com/7.x/avataaars/svg?seed=" + UUID.randomUUID().toString());
+        user.setAvatarUrl("https://api.dicebear.com/7.x/avataaars/svg?seed=" + UUID.randomUUID());
 
         userRepository.save(user);
 
@@ -115,7 +118,7 @@ public class AuthController {
         response.put("token", token);
         response.put("user_id", user.getId());
         response.put("email", user.getEmail());
-        response.put("roles", List.of(user.getRole()));
+        response.put("roles", user.getRole() != null ? Collections.singletonList(user.getRole()) : Collections.emptyList());
         response.put("profile", user);
         response.put("current_family", family);
 

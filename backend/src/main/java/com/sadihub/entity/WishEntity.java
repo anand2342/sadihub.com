@@ -1,6 +1,9 @@
 package com.sadihub.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,7 +16,7 @@ public class WishEntity {
     @Column(name = "family_id", nullable = false)
     private String familyId;
 
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user_id")
     private String userId;
 
     @Column(name = "sender_name", nullable = false)

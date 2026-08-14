@@ -1,14 +1,19 @@
 package com.sadihub.config;
 
-import com.sadihub.entity.*;
-import com.sadihub.repository.*;
+import com.sadihub.entity.EventEntity;
+import com.sadihub.entity.FamilyEntity;
+import com.sadihub.entity.UserEntity;
+import com.sadihub.entity.WeddingEntity;
+import com.sadihub.repository.EventRepository;
+import com.sadihub.repository.FamilyRepository;
+import com.sadihub.repository.UserRepository;
+import com.sadihub.repository.WeddingRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component
+@SuppressWarnings("null")
 public class DataInitializer implements CommandLineRunner {
 
     private final FamilyRepository familyRepository;
@@ -30,7 +35,7 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         // Seed default family if not exists
         FamilyEntity family = familyRepository.findByFamilyCode("WEDDING123").orElseGet(() -> {
             FamilyEntity newFamily = new FamilyEntity("family-default", "Nayak Family", "nayak-family", "WEDDING123");
