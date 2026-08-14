@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Heart, Users, ShieldCheck, ArrowRight } from 'lucide-react';
+import { Sparkles, Heart, Users, LogIn, ShieldCheck, ArrowRight } from 'lucide-react';
 
 interface LandingHeroProps {
   onOpenAuth: (tab: 'signin' | 'join' | 'create') => void;
@@ -23,10 +23,8 @@ export const LandingHero: React.FC<LandingHeroProps> = ({ onOpenAuth, onOpenBoot
 
         {/* Main Headline */}
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-[var(--text-primary)] leading-[1.15] tracking-tight">
-          Where your family comes together for{' '}
-          <span className="text-gold-gradient block mt-2">
-            the Grand Wedding
-          </span>
+          Keep your family close, <br />
+          <span className="gold-text-gradient font-serif italic font-normal">no matter the distance</span>
         </h1>
 
         {/* Emotional Subtitle */}
@@ -47,7 +45,7 @@ export const LandingHero: React.FC<LandingHeroProps> = ({ onOpenAuth, onOpenBoot
 
           <button
             onClick={() => onOpenAuth('join')}
-            className="w-full sm:w-auto px-8 py-4 rounded-xl border-2 border-[var(--border-gold)] bg-[var(--bg-card)] text-[var(--text-primary)] font-medium text-base hover:bg-[var(--bg-accent)] transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-4 rounded-xl border-2 border-[var(--border-gold)] bg-[var(--bg-card)] text-[var(--text-primary)] font-medium text-base hover:bg-[var(--bg-accent)] transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
           >
             <Users className="w-5 h-5 text-[var(--gold-dark)] dark:text-[var(--gold-primary)]" />
             <span>Join Your Family</span>
@@ -55,9 +53,10 @@ export const LandingHero: React.FC<LandingHeroProps> = ({ onOpenAuth, onOpenBoot
 
           <button
             onClick={() => onOpenAuth('signin')}
-            className="w-full sm:w-auto px-6 py-4 rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] font-medium text-base transition-colors cursor-pointer"
+            className="w-full sm:w-auto px-8 py-4 rounded-xl border-2 border-[var(--border-gold)] bg-[var(--bg-card)] text-[var(--text-primary)] font-medium text-base hover:bg-[var(--bg-accent)] transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
           >
-            Sign In to Account
+            <LogIn className="w-5 h-5 text-[var(--gold-dark)] dark:text-[var(--gold-primary)]" />
+            <span>Sign In to Account</span>
           </button>
         </div>
 

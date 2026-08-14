@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Heart, Key, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import type { RelationType } from '../../types';
@@ -30,6 +30,21 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [familyName, setFamilyName] = useState('');
+  const [rememberMe, setRememberMe] = useState<boolean>(() => {
+    return localStorage.getItem('shadihub_remember_me') === 'true';
+  });
+
+  // Pre-fill credentials if Remember Me was checked previously
+  useEffect(() => {
+    if (isOpen && localStorage.getItem('shadihub_remember_me') === 'true') {
+      const savedEmail = localStorage.getItem('shadihub_remember_email');
+      const savedPassword = localStorage.getItem('shadihub_remember_password');
+      const savedFamily = localStorage.getItem('shadihub_remember_family');
+      if (savedEmail) setEmail(savedEmail);
+      if (savedPassword) setPassword(savedPassword);
+      if (savedFamily) setFamilyName(savedFamily);
+    }
+  }, [isOpen]);
 
   // Join Family Form
   const [joinFullName, setJoinFullName] = useState('');
@@ -60,6 +75,17 @@ export const AuthModal: React.FC<AuthModalProps> = ({
       }
 
       if (res.success) {
+        if (rememberMe) {
+          localStorage.setItem('shadihub_remember_me', 'true');
+          if (email) localStorage.setItem('shadihub_remember_email', email);
+          if (password) localStorage.setItem('shadihub_remember_password', password);
+          if (familyName) localStorage.setItem('shadihub_remember_family', familyName);
+        } else {
+          localStorage.removeItem('shadihub_remember_me');
+          localStorage.removeItem('shadihub_remember_email');
+          localStorage.removeItem('shadihub_remember_password');
+          localStorage.removeItem('shadihub_remember_family');
+        }
         onToast('Signed in successfully! Welcome to your Family Wedding Portal.', 'success');
         onClose();
       } else {
@@ -184,7 +210,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
         {/* TAB 1: SIGN IN */}
         {activeTab === 'signin' && (
-          <form onSubmit={handleSignIn} className="space-y-4">
+          <form onSubmit={handleSignIn} method="post" autoComplete="on" className="space-y-4">
             <div className="flex justify-center gap-4 mb-2">
               <button
                 type="button"
@@ -213,10 +239,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             {signInMode === 'email' ? (
               <>
                 <div>
-                  <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Email Address</label>
+                  <label htmlFor="signin-email" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Email Address</label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-3 w-4 h-4 text-[var(--text-muted)]" />
                     <input
+                      id="signin-email"
+                      name="username"
+                      autoComplete="username"
                       type="email"
                       required
                       value={email}
@@ -227,10 +256,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Password</label>
+                  <label htmlFor="signin-password" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Password</label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-3 w-4 h-4 text-[var(--text-muted)]" />
                     <input
+                      id="signin-password"
+                      name="password"
+                      autoComplete="current-password"
                       type={showSignInPass ? 'text' : 'password'}
                       required
                       value={password}
@@ -252,12 +284,15 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             ) : (
               <>
                 <div>
-                  <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
+                  <label htmlFor="signin-family-code" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
                     Unique Family Code or Family Name *
                   </label>
                   <div className="relative">
                     <Key className="absolute left-3 top-3 w-4 h-4 text-[var(--gold-dark)]" />
                     <input
+                      id="signin-family-code"
+                      name="username"
+                      autoComplete="username"
                       type="text"
                       required
                       value={familyName}
@@ -273,6 +308,28 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               </>
             )}
 
+            {/* Remember Me & Forgot Password */}
+            <div className="flex items-center justify-between pt-1 text-xs">
+              <label className="flex items-center gap-2 text-[var(--text-secondary)] font-medium cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  id="remember-me"
+                  name="remember"
+                  checked={rememberMe}
+                  onChange={e => setRememberMe(e.target.checked)}
+                  className="w-4 h-4 rounded border-[var(--border-gold)] text-[var(--gold-dark)] focus:ring-[var(--gold-primary)] accent-[var(--gold-dark)] cursor-pointer"
+                />
+                <span>Remember me</span>
+              </label>
+              <button
+                type="button"
+                onClick={() => onToast('Please contact your Family Admin to reset your password.', 'info')}
+                className="text-[var(--gold-dark)] dark:text-[var(--gold-primary)] hover:underline font-medium cursor-pointer"
+              >
+                Forgot Password?
+              </button>
+            </div>
+
             <button
               type="submit"
               disabled={loading}
@@ -285,18 +342,20 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
         {/* TAB 2: JOIN FAMILY */}
         {activeTab === 'join' && (
-          <form onSubmit={handleJoinFamily} className="space-y-3">
+          <form onSubmit={handleJoinFamily} method="post" autoComplete="on" className="space-y-3">
             <div className="p-3 rounded-xl bg-[var(--gold-light)] border border-[var(--border-gold)] text-xs text-[var(--gold-dark)] dark:text-[var(--gold-primary)] leading-snug">
               ✨ Enter the <strong>Unique Family Code</strong> (e.g. KAP-8492) shared by your Family Admin to join your family portal!
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
+              <label htmlFor="join-family-code" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
                 Unique Family Code (or Family Name) *
               </label>
               <div className="relative">
                 <Key className="absolute left-3 top-2.5 w-4 h-4 text-[var(--gold-dark)]" />
                 <input
+                  id="join-family-code"
+                  name="familyCode"
                   type="text"
                   required
                   value={familyName}
@@ -308,8 +367,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Your Full Name *</label>
+              <label htmlFor="join-fullname" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Your Full Name *</label>
               <input
+                id="join-fullname"
+                name="name"
                 type="text"
                 required
                 value={joinFullName}
@@ -321,8 +382,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Your Relation</label>
+                <label htmlFor="join-relation" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Your Relation</label>
                 <select
+                  id="join-relation"
+                  name="relation"
                   value={joinRelation}
                   onChange={e => setJoinRelation(e.target.value as RelationType)}
                   className="w-full px-3 py-2 rounded-xl border border-[var(--border-gold)] bg-[var(--bg-primary)] text-xs text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--gold-primary)]"
@@ -340,8 +403,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Mobile Number</label>
+                <label htmlFor="join-mobile" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Mobile Number</label>
                 <input
+                  id="join-mobile"
+                  name="tel"
+                  autoComplete="tel"
                   type="tel"
                   value={joinMobile}
                   onChange={e => setJoinMobile(e.target.value)}
@@ -352,8 +418,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Your Personal Email *</label>
+              <label htmlFor="join-email" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Your Personal Email *</label>
               <input
+                id="join-email"
+                name="username"
+                autoComplete="username"
                 type="email"
                 required
                 value={joinEmail}
@@ -364,9 +433,12 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Create Account Password *</label>
+              <label htmlFor="join-password" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Create Account Password *</label>
               <div className="relative">
                 <input
+                  id="join-password"
+                  name="new-password"
+                  autoComplete="new-password"
                   type={showJoinPass ? 'text' : 'password'}
                   required
                   value={joinPass}
@@ -397,14 +469,16 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
         {/* TAB 3: CREATE FAMILY (Self-serve Auto Admin) */}
         {activeTab === 'create' && (
-          <form onSubmit={handleCreateFamily} className="space-y-3">
+          <form onSubmit={handleCreateFamily} method="post" autoComplete="on" className="space-y-3">
             <div className="p-3 rounded-xl bg-[var(--gold-light)] border border-[var(--border-gold)] text-xs text-[var(--gold-dark)] dark:text-[var(--gold-primary)] leading-snug">
               Self-serve family creation! When you register, a <strong>Unique Family Code</strong> (e.g. ROY-5491) will be auto-generated and displayed in your Admin Panel to share with your family members.
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Family Name *</label>
+              <label htmlFor="create-family-name" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Family Name *</label>
               <input
+                id="create-family-name"
+                name="familyName"
                 type="text"
                 required
                 value={createFamilyName}
@@ -415,10 +489,12 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
+              <label htmlFor="create-family-pass" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">
                 Custom Passkey / Code (Optional)
               </label>
               <input
+                id="create-family-pass"
+                name="customPasskey"
                 type="text"
                 value={createFamilyPass}
                 onChange={e => setCreateFamilyPass(e.target.value)}
@@ -428,8 +504,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Family Admin Name *</label>
+              <label htmlFor="create-admin-name" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Family Admin Name *</label>
               <input
+                id="create-admin-name"
+                name="name"
                 type="text"
                 required
                 value={createAdminName}
@@ -440,8 +518,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Admin Email Address *</label>
+              <label htmlFor="create-admin-email" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Admin Email Address *</label>
               <input
+                id="create-admin-email"
+                name="username"
+                autoComplete="username"
                 type="email"
                 required
                 value={createAdminEmail}
@@ -452,9 +533,12 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Admin Account Password *</label>
+              <label htmlFor="create-admin-password" className="block text-xs font-semibold text-[var(--text-secondary)] mb-1">Admin Account Password *</label>
               <div className="relative">
                 <input
+                  id="create-admin-password"
+                  name="new-password"
+                  autoComplete="new-password"
                   type={showCreateAdminPass ? 'text' : 'password'}
                   required
                   value={createAdminPass}
